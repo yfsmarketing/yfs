@@ -6,11 +6,14 @@ var cleanCSS = require('gulp-clean-css');
 var rename = require("gulp-rename");
 var uglify = require('gulp-uglify');
 var pkg = require('./package.json');
+var pug = require('gulp-pug');
+var less = require('gulp-less');
+var minifyCSS = require('gulp-csso');
 
 // Set the banner content
 var banner = ['/*!\n',
-  ' * Start Bootstrap - <%= pkg.title %> v<%= pkg.version %> (<%= pkg.homepage %>)\n',
-  ' * Copyright 2013-' + (new Date()).getFullYear(), ' <%= pkg.author %>\n',
+  ' * YFS Marketing - <%= pkg.title %> v<%= pkg.version %> (<%= pkg.homepage %>)\n',
+  ' * Copyright 2017-' + (new Date()).getFullYear(), ' <%= pkg.author %>\n',
   ' * Licensed under <%= pkg.license %> (https://github.com/BlackrockDigital/<%= pkg.name %>/blob/master/LICENSE)\n',
   ' */\n',
   ''
@@ -112,3 +115,18 @@ gulp.task('dev', ['browserSync', 'sass', 'minify-css', 'minify-js'], function() 
   gulp.watch('*.html', browserSync.reload);
   gulp.watch('js/**/*.js', browserSync.reload);
 });
+
+gulp.task('html', function(){
+  return gulp.src('client/templates/*.pug')
+    .pipe(pug())
+    .pipe(gulp.dest('build/html'))
+});
+
+gulp.task('css', function(){
+  return gulp.src('client/templates/*.less')
+    .pipe(less())
+    .pipe(minifyCSS())
+    .pipe(gulp.dest('build/css'))
+});
+
+gulp.task('default', [ 'html', 'css' ]);
