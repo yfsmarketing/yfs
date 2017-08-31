@@ -6,9 +6,6 @@ var cleanCSS = require('gulp-clean-css');
 var rename = require("gulp-rename");
 var uglify = require('gulp-uglify');
 var pkg = require('./package.json');
-var pug = require('gulp-pug');
-var less = require('gulp-less');
-var minifyCSS = require('gulp-csso');
 
 // Set the banner content
 var banner = ['/*!\n',
@@ -115,18 +112,3 @@ gulp.task('dev', ['browserSync', 'sass', 'minify-css', 'minify-js'], function() 
   gulp.watch('*.html', browserSync.reload);
   gulp.watch('js/**/*.js', browserSync.reload);
 });
-
-gulp.task('html', function(){
-  return gulp.src('client/templates/*.pug')
-    .pipe(pug())
-    .pipe(gulp.dest('build/html'))
-});
-
-gulp.task('css', function(){
-  return gulp.src('client/templates/*.less')
-    .pipe(less())
-    .pipe(minifyCSS())
-    .pipe(gulp.dest('build/css'))
-});
-
-gulp.task('default', [ 'html', 'css' ]);
