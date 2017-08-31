@@ -18,6 +18,12 @@
   },
   "license": "MIT",
   "author": "YFS Marketing",
+  "private": true,
+  "scripts": {
+    "js": "node build.js",
+    "jekyll": "bundle exec jekyll b",
+    "dev": "concurrently --kill-others 'node build.js watch' 'bundle exec jekyll serve'",
+    "build": "node build.js && bundle exec jekyll b"
   "contributors": [
     "Lun"
   ],
