@@ -3,19 +3,7 @@
   "name": "startbootstrap-agency",
   "version": "4.0.0-beta",
   "description": "Website is use to promote YFS Marketing as a production company.",
-  "keywords": [
-    "css",
-    "sass",
-    "html",
-    "responsive",
-    "theme",
-    "template"
-  ],
-  "homepage": "www.yfsmarketing.com",
-  "bugs": {
-    "url": "www.yfsmarketing.com",
-    "email": "yfsmarketingsdnbhd888@gmail.com"
-  },
+
   "author": "YFS Marketing",
   "private": true,
   "scripts": {
