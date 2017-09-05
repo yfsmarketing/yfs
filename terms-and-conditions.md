@@ -1,8 +1,4 @@
----
-layout: textpage
-title: Terms, conditions and Company policies
-hero: Terms and Conditions
----
+<!DOCTYPE html>
 <html lang="en">
 
   <head>
