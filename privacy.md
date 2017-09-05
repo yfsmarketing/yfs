@@ -1,5 +1,5 @@
 ---
-layout: textpage
+layout: index
 title: Privacy
 hero: Privacy
 ---
