@@ -1,5 +1,28 @@
+
+layout: page
+title: Products
+hero: Lad's Vape Liquids
+layout: default
+seo:
+  name: Vape liquid products
+  type: LocalBusiness
+---
+
+
 <!DOCTYPE html>
 <html lang="en">
+
+<div class="content container" id="products">
+	<ul class="product-list">
+		{% for product in site.products %}
+		{% if product.disabled == false %}
+		<li>
+			{% include product-image.html product=product type='source' %}
+		</li>
+		{% endif %}
+		{% endfor %}
+	</ul>
+</div>
 
   <head>
 
