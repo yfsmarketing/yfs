@@ -1,0 +1,124 @@
+---
+layout: compress
+---
+<!doctype html>
+{% if page.hero.text %}
+	{% assign hero = page.hero.text %}
+{% elsif page.hero %}
+	{% assign hero = page.hero %}
+{% else %}
+	{% assign hero = page.name %}
+{% endif %}
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' https://* 'unsafe-inline' data:; script-src 'self' 'unsafe-eval' 'unsafe-inline' data: https://disqus.com https://*.disqus.com https://*.disquscdn.com https://*.snipcart.com https://*.google-analytics.com https://maps.googleapis.com https://csi.gstatic.com; child-src *" />
+	<link rel="manifest" href="/manifest.json">
+	<link rel="icon" type="image/png" href="{{ "/images/favicon.png" | relative_url }}">
+	<link rel="prefetch" href="{% link about.html %}">
+	<link rel="prefetch" href="{% link contact.html %}">
+	<link rel="dns-prefetch" href="https://disqus.com">
+	<link rel="dns-prefetch" href="https://c.disquscdn.com">
+	<link rel="dns-prefetch" href="https://app.snipcart.com">
+	<link rel="dns-prefetch" href="https://api.google-analytics.com">
+	<link rel="dns-prefetch" href="https://maps.googleapis.com">
+	{% seo %}
+	<style type="text/css">
+		{% capture include_to_scssify %}
+		{% include critical.scss %}
+		{% endcapture %}
+		{{ include_to_scssify | scssify }}
+	</style>
+	<script defer type="text/javascript" src="{{ "/js/bundle.js" | relative_url }}" charset="utf-8"></script>
+</head>
+<body>
+	<a id="skiptomain" href="#barba-wrapper">Skip to main content</a> 
+	<header id="header" class="hero-image" {% if page.hero.image %}style="background-image:url({{ page.hero.image | relative_url }})"{% endif %}>
+		<div class="container">
+			<!--<div class="company-name">
+				<a href="{{ site.baseurl | relative_url }}/">
+				<img src="{{"images/logo.png" | relative_url}}" />
+				</a>
+			</div>-->
+			<section class="hero text-container" >
+				<h2 class="hero-title">{{ hero }}</h2>
+			</section>
+			<!--<a class="nav-toggle open-menu" href="#header">&#9776;</a>
+			<a class="nav-toggle close-menu" href="#">&#9776;</a>-->
+			<div id="mainnav">
+			<nav role="navigation">
+				{% for link in site.data.navigation %}
+					{% assign class = "" %}
+					{% if link.highlight %}
+						{% assign class = class | append: " highlight" %}
+					{% endif %}
+
+					{% if link.name == page.title %}
+						{% assign class = class | append: " active" %}
+					{% endif %}
+					<a href="{{ link.link }}" accesskey="{{ link.accesskey }}" class="{{ class }}" data-linkname="{{ link.name }}"
+						{% if link.new_window %}target="_blank"{% endif %}>{{ link.name }}</a>
+				{% endfor %}
+				<span style="flex: 1 0 auto"> </span>
+				<a accesskey="s" rel="nofollow" href="#" class="cart snipcart-checkout" id="btnSnipcard" data-loading="true">
+					<i class="material-icons">shopping_cart</i><span>View Cart</span>
+				</a>
+			</nav>
+			</div>
+		</div>
+	</header>
+
+	<canvas id="backgroundcanvas"></canvas>
+
+	<main id="barba-wrapper">
+		<div class="barba-container" data-namespace="homepage" id="newpage"
+			data-pagetitle="{{ page.title }}" data-hero="{{ hero }}"
+			{% if page.hero.image %}data-heroimage="{{ page.hero.image | relative_url }}"{% endif %}
+
+		{{ content }}
+		
+		</div>
+	</main>
+
+	{% include newsletter.html %}
+	{% include plus18.html %}
+
+	<footer><div class="container">
+		<div class="footer-columns">
+		{% for column in site.data.footer %}
+		<ul class="footer-links">
+			<li><h4>{{ column.title }}</h4></li>
+			{% for link in column.links %}
+				{% assign class = "" %}
+				{% if link.highlight %}
+					{% assign class = class | append: " highlight" %}
+				{% endif %}
+
+				{% if link.name == page.title %}
+					{% assign class = class | append: " active" %}
+				{% endif %}
+				{% if link.social_icon %}
+					{% assign class = class | append: link.social_icon + "-icon" %}
+				{% endif %}
+				<li>
+					<a class="{{ class }}"
+						{% if link.new_window %}target="_blank" href="{{ link.link }}"
+						{% else %}href="{{ link.link | relative_url }}"{% endif %}
+						data-linkname="{{ link.name }}"
+					>
+					{{ link.name }}
+					{% if link.social_icon %}
+						{% include social-icon.html icon=link.social_icon %}
+					{% endif %}
+				</a></li>
+			{% endfor %}
+		</ul>
+		{% endfor %}
+		</div>
+		<p class="copyright">© {{ site.time | date: '%Y' }} {{ site.title }}</p>
+	</div></footer>
+	<link rel="stylesheet" href="{{ "/css/main.css" | relative_url }}"/>
+</body>
+</html>
