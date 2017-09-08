@@ -124,7 +124,7 @@ gulp.task('dev', ['browserSync', 'sass', 'minify-css', 'minify-js'], function() 
 // package (see the check-for-favicon-update task below).
 gulp.task('generate-favicon', function(done) {
 	realFavicon.generateFavicon({
-		masterPicture: 'C:\Users\Lun Tan\yfs\img\favicon\browserconfig.xml',
+		masterPicture: 'C:\Users\Lun Tan\yfs\img\favicon\android-chrome-512x512.png',
 		dest: 'C:\Users\Lun Tan\yfs\img\favicon',
 		iconsPath: 'C:\Users\Lun Tan\yfs\img\favicon\favicon.ico',
 		design: {
