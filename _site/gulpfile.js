@@ -124,9 +124,9 @@ gulp.task('dev', ['browserSync', 'sass', 'minify-css', 'minify-js'], function() 
 // package (see the check-for-favicon-update task below).
 gulp.task('generate-favicon', function(done) {
 	realFavicon.generateFavicon({
-		masterPicture: 'C:\Users\Lun Tan\yfs\img\favicon\favicon.ico',
+		masterPicture: 'C:\Users\Lun Tan\yfs\img\favicon\browserconfig.xml',
 		dest: 'C:\Users\Lun Tan\yfs\img\favicon',
-		iconsPath: '/',
+		iconsPath: 'C:\Users\Lun Tan\yfs\img\favicon\favicon.ico',
 		design: {
 			ios: {
 				pictureAspect: 'noChange',
